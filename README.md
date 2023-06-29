@@ -1,4 +1,4 @@
-# KR-SAES
+# Knowledge Race-Enhanced Surrogate-Assisted Evolutionary Search (KR-SAES)
 
 This repository contains the source code of KR-SAES, including six knowledge race-based SAEAs configured by three surrogate models and two types of acquisition manners. For more details, you can refer to the following paper.
 
