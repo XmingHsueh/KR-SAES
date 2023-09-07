@@ -79,7 +79,7 @@ while FEsUsed < FEsMax
     improvement_internal  = objs(end)-objs_parent(idx);
     solution_internal = population_parent(idx,:);
 
-    % knowledge race
+    % knowledge competition
     if mod(FEsUsed,gen_gap)==0
         [solution_external,improvement_external] = knowledge_race(database,lb,ub,knowledge_base,surrogates_source,ada_vectors);
         if improvement_internal>=improvement_external
