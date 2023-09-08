@@ -13,7 +13,7 @@
 % lb: the lower bound of decision space
 % ub: the upper bound of decision space
 % FEsMax: the maximum function evaluations
-% knowledge_base: a knowledge base with k previously-sovled source tasks
+% knowledge_base: a knowledge base with a number of previously-solved source tasks
 % paras: other parameters
 %
 % ------------
