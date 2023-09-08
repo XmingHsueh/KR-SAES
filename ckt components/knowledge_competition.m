@@ -1,4 +1,4 @@
-function [solution_externel,imp_max] = knowledge_race(database,lb,ub,knowledge_base,surrogates_source,ada_vectors)
+function [solution_externel,imp_max] = knowledge_competition(database,lb,ub,knowledge_base,surrogates_source,ada_vectors)
 
 num_sources = length(knowledge_base);
 dim = length(lb);
@@ -8,10 +8,10 @@ solutions = zeros(num_sources,dim);
 improvements = zeros(num_sources,1);
 similarities = zeros(num_sources,1);
 ranks_target = zeros(length(objs_target),1);
+
 for i = 1:length(objs_target)
     ranks_target(i) = sum(objs_target<objs_target(i))+1;
 end
-
 for i = 1:num_sources
     solutions_source = knowledge_base(i).database(:,1:end-1);
     objs_source = knowledge_base(i).database(:,end);
@@ -23,8 +23,8 @@ for i = 1:num_sources
     for j = 1:length(objs_target)
         ranks_val(j) = sum(objs_val<objs_val(j))+1;
     end
-    uncertainty = 1-max(abs(ada_vectors(i,:)));
-    similarities(i) = uncertainty*mySpearman(ranks_target,ranks_val);
+    regularization = 1-max(abs(ada_vectors(i,:)));
+    similarities(i) = regularization*mySpearman(ranks_target,ranks_val);
     improvements(i) = improvement_estimation(sort(objs_source,'descend'),sort(objs_val,'descend'),sort(objs_target,'descend'),similarities(i));
     [~,idx] = min(objs_source);
     x_ada_source = (solutions_source(idx,:)+ada_vectors(i,:));

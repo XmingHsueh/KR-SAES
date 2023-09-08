@@ -1,4 +1,5 @@
 function [func_surrogate,model_type] = surrogate_model(database,surrogate_name)
+
 X = database(:,1:end-1);
 y = database(:,end);
 

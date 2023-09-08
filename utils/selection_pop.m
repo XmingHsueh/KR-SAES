@@ -1,14 +1,15 @@
 function [population,objs] = selection_pop(population_parent,objs_parent,population_offspring,objs_offspring,selector)
+
 popsize = size(population_parent,1);
 
 switch(selector)
-    case 'Truncation'
+    case 'truncation'
         objs_total = [objs_parent;objs_offspring];
         population_total = [population_parent;population_offspring];
         [~,idx] = sort(objs_total);
         population = population_total(idx(1:popsize),:);
         objs = objs_total(idx(1:popsize));
-    case 'RouletteWheel'
+    case 'roulettewheel'
         objs_total = [objs_parent;objs_offspring];
         population_total = [population_parent;population_offspring];
         fit_total = objs_total - min(min(objs_total),0) + 1e-6;

@@ -1,16 +1,17 @@
-function [population_parent,objs_parent] = parent_pop(database,lb,ub,parent_strategy,popsize,func_surrogate,acquisition)
+function [population_parent,objs_parent] = ini_pop(database,lb,ub,ini_strategy,popsize,func_surrogate)
+
 population = database(:,1:end-1);
 objs = database(:,end);
 
-switch (parent_strategy)
-    case 'New'
+switch (ini_strategy)
+    case 'new'
         population_parent = population(end-popsize+1:end,:);
         objs_parent = objs(end-popsize+1:end);
-    case 'Elite'
+    case 'elite'
         [~,idx] = sort(objs);
         population_parent = population(idx(1:popsize),:);
         objs_parent = objs(idx(1:popsize));
-    case 'Elite+Random'
+    case 'elite&random'
         [~,idx] = sort(objs);
         population_parent = population(idx(1:floor(popsize/2)),:);
         objs_parent = objs(idx(1:floor(popsize/2)));
