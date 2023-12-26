@@ -1,7 +1,7 @@
-function imp = improvement_estimation(objs_source,objs_val,objs_target,sim)
-
+function imp = improvement_external(objs_source,objs_val,objs_target,sim)
 no_samples_source = length(objs_source);
 no_samples_target = length(objs_target);
+
 coe_source  = ([ones(no_samples_source,1), transpose([1:no_samples_source])])\log(objs_source);
 ps = [exp(coe_source(1)) -coe_source(2)];
 coe_target = ([ones(no_samples_target,1), transpose([1:no_samples_target])])\log(objs_target);
